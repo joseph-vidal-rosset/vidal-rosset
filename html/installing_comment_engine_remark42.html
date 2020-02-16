@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2020-01-02 jeu. 14:18 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installing comment engine Remark42</title>
+<meta name="generator" content="Org mode">
+<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="stylesheet" type="text/csl" href="ieee.csl"/>
+<link rel="icon" href="ico/favicon.ico" type="image/x- icon">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div class="head">
+<div class="title">
+<p>
+<a href="index.html">Joseph Vidal-Rosset - Personal Blog</a>
+</p>
+
+</div>
+
+<menu>
+<ul class="org-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="mailing_list_educasupphilo.html">Mailing list educasup.philo</a></li>
+</ul>
+</menu>
+
+</div>
+
+<p>
+ </p><h1>
+Installing comment engine Remark42 
+ </h1><p>
+</p>
+
+<p>
+<span class=page-date> <small> 
+ 2020-01-02, updated 2020-01-02 <a href="footnotes.html">next</a> - <a href="my_nginx_setup.html">previous</a>    
+</small> </span> 
+</p>
+<nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#my_server">1. My server</a></li>
+<li><a href="#remark42_configuration">2. Remark42 configuration</a></li>
+<li><a href="#remark42_installation">3. Remark42 installation</a></li>
+</ul>
+</div>
+</nav>
+<p>
+<a href="https://github.com/umputun/remark">Remark42</a> is  the comment engine of  this blog. I  describe in  details  its
+installation  in this  post,  thinking  that it  could  be helpful  to
+others.  
+</p>
+
+<p>
+The most  popular comment plugin  on the web  is <a href="https://disqus.com/">Disqus</a>, but  it seems
+that there are also good reasons to avoid its installation [<a href="https://www.isaumya.com/7-reasons-to-avoid-disqus-commenting-system/">1,</a><a href="https://fatfrogmedia.com/delete-disqus-comments-wordpress/">2,</a>
+<a href="https://victorzhou.com/blog/replacing-disqus/">3</a>]. Among <a href="https://gohugo.io/content-management/comments/#comments-alternatives">Disqus alternatives</a>, I decided to install <a href="https://gohugo.io/content-management/comments/#comments-alternatives">Remark42</a>. I am going
+to give a description of my server  and the files that I have used for
+this installation of <i>Remark</i>.
+</p>
+<div id="outline-container-my_server" class="outline-2">
+<h2 id="my_server"><span class="section-number-2">1</span> My server</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+My dedicated  server is  the cheapest <a href="https://www.online.net/en/dedicated-server">Dedibox  at Online.net</a>,  it runs
+with <a href="https://www.debian.org/">Debian 10</a>, like my PC. As we are going to see it, it is important
+to get  a dedicated server to  install exactly what you  need for your
+website.  
+</p>
+</div>
+</div>
+<div id="outline-container-remark42_configuration" class="outline-2">
+<h2 id="remark42_configuration"><span class="section-number-2">2</span> Remark42 configuration</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The  <a href="https://github.com/umputun/remark#remark42">Reamde.md</a>  is  a  full  documentation  for  the  installation  of
+<i>Remark42</i> and it is necessary to read it carefully. 
+</p>
+
+<ul class="org-ul">
+<li>First, Docker is &ldquo;the recommended  way to run remark42&rdquo;, therefore I
+had  to <a href="https://docs.docker.com/install/linux/docker-ce/debian">install  Docker on  my Debian  server</a>, and  I followed  this
+ <a href="https://docs.docker.com/compose/install/">documentation</a> to  install Docker  Compose, because  the recommended
+installation     of     <i>Remark42</i>     is    done     <i>via</i>     <a href="https://github.com/umputun/remark/blob/master/docker-compose.yml">this
+docker-compose.yml</a>. There  is a  sufficient documentation  on Docker
+compose  in  this  <a href="https://docker-curriculum.com/">&ldquo;Docker  for beginners&rdquo;</a>,  because  the  main things that
+you need to know to install Remark42 after having installed Docker
+and Docker Compose is that you have to adapt this <a href="https://github.com/umputun/remark/blob/master/docker-compose.yml">docker-compose.yml</a>
+file  to your  need, to  put in  into a  readable directory  of your
+server and run few command lines <i>inside this directory</i>. My advice:
+download this  <a href="https://github.com/umputun/remark/blob/master/docker-compose.yml">docker-compose.yml</a> file into  a directory of  your PC
+and only after having changes according  to your needs, upload it on
+the <i>home/yourlogin</i> of your box, to  move it after, as root, into a
+directory of your  server. For example, once adapted to  the name of
+your server, this minimal configuration should work:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh">version: <span class="org-string">'2'</span>
+
+services:
+    remark:
+        build: .
+        image: umputun/remark42:latest
+        container_name: <span class="org-string">"remark42"</span>
+        hostname: <span class="org-string">"remark42"</span>
+        restart: always
+
+        logging:
+          driver: json-file
+          options:
+              max-size: <span class="org-string">"10m"</span>
+              max-file: <span class="org-string">"5"</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">uncomment to expose directly (no proxy)</span>
+        ports:
+          - <span class="org-string">"8080:8080"</span>    <span class="org-comment-delimiter">#</span><span class="org-comment">VERY IMPORTANT : DO NOT CHANGE THIS. </span>
+
+        environment:
+            - <span class="org-variable-name">REMARK_URL</span>=https://remark42.mydomain   <span class="org-comment-delimiter">#</span><span class="org-comment">in my case: https://remark42.vidal.rosset.net </span>
+            - <span class="org-variable-name">SECRET</span>=********   <span class="org-comment-delimiter"># </span><span class="org-comment">this secret code must be the root password in your server.</span>
+            - <span class="org-variable-name">SITE</span>=remark42.mydomain <span class="org-comment-delimiter"># </span><span class="org-comment">must be the same in the html script </span>
+            - <span class="org-variable-name">STORE_BOLT_PATH</span>=/srv/var/db
+            - <span class="org-variable-name">BACKUP_PATH</span>=/srv/var/backup
+            - <span class="org-variable-name">DEBUG</span>=true
+            - <span class="org-variable-name">AUTH_ANON</span>=true
+            <span class="org-comment-delimiter"># </span><span class="org-comment">- ADMIN_PASSWD=password</span>
+        volumes:
+            - ./var:/srv/var
+</pre>
+</div>
+<p>
+   <i>But</i>,  with this  minimal configuration  above, comments  would be
+given only anonymously and you&rsquo;ll miss to moderate them.  Therefore,
+it is of course better to adapt at least
+<a href="https://github.com/umputun/remark#required-parameters">the minimal docker-compose.yml</a> given  by Umputun. Replace in Umputun&rsquo;s
+example 
+<a href="https://demo.remark42.com">https://demo.remark42.com</a>  by   <a href="http://remark42.yourdomain.com">http://remark42.yourdomain.com</a>  or  by
+<a href="https://remark42.yourdomain.com">https://remark42.yourdomain.com</a>, 
+SITE=YOUR_SITE_ID              by              SITE=the-name-you-want,
+SECRET=abcd-123456-xyz-$%^&amp;  by  SECRET=the-root-passwd, and  for  the
+correct      values       of      AUTH_GITHUB_CID=12345667890      and
+AUTH_GITHUB_CSEC=abcdefg12345678, itt requires that you get first, a <a href="https://guides.github.com/activities/hello-world/">Github account</a>, second that you
+<a href="https://github.com/umputun/remark#github-auth-provider">create a  new &ldquo;OAuth App&rdquo;</a>  under this account,  as it is  explained in
+this section of the Readme.
+</p>
+
+<p>
+I    come    back     to    <a href="http://remark42.yourdomain.com">http://remark42.yourdomain.com</a>    or    by
+<a href="https://remark42.yourdomain.com">https://remark42.yourdomain.com</a>    for    more    explanation.    This
+configuration  requires first that  you have  if  the nginx  setup given  in
+<i>/etc/nginx/nginx.conf</i> the following lines (see this <a href="https://www.vidal-rosset.net/My_nginx_setup.html">post)</a>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">location / {
+       expires $<span class="org-variable-name">expires</span>;
+       proxy_redirect                      off;
+       <span class="org-comment-delimiter"># </span><span class="org-comment">proxy_set_header Host               $host;</span>
+       proxy_set_header Host               $<span class="org-variable-name">http_host</span>;
+       proxy_set_header X-Real-IP          $<span class="org-variable-name">remote_addr</span>;
+       proxy_set_header X-Forwarded-For    $<span class="org-variable-name">proxy_add_x_forwarded_for</span>;
+       proxy_set_header X-Forwarded-Proto  $<span class="org-variable-name">scheme</span>;
+       proxy_read_timeout          1m;
+       proxy_connect_timeout       1m;
+       proxy_pass                          http://127.0.0.1:8080; <span class="org-comment-delimiter"># </span><span class="org-comment">mettre l'URL de l'instance Node.js ici</span>
+   }
+</pre>
+</div>
+<p>
+  and second that you declare remark42 as A record in your DNS, see this
+example: 
+<img src="./png/DNS.png" alt="DNS.png"> 
+</p>
+
+<p>
+But note that it is possible to <a href="https://github.com/umputun/remark/wiki/How-to-configure-remark42-without-a-subdomain">configure remark42 without a subdomain</a>.
+</p>
+
+<p>
+Last,   here   is   now    the   docker-compose.yml   file   that   is
+<i><i>var/www/vidal-rosset/html/remark</i></i> in my Debian server: 
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">version: <span class="org-string">'2'</span>
+
+services:
+    remark:
+        build: .
+        image: umputun/remark42:latest
+        container_name: <span class="org-string">"remark42"</span>
+        hostname: <span class="org-string">"remark42"</span>
+        restart: always
+
+        logging:
+          driver: json-file
+          options:
+              max-size: <span class="org-string">"10m"</span>
+              max-file: <span class="org-string">"5"</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">uncomment to expose directly (no proxy)</span>
+        ports:
+          - <span class="org-string">"8080:8080"</span>    <span class="org-comment-delimiter">#</span><span class="org-comment">VERY IMPORTANT : DO NOT CHANGE THIS. </span>
+
+        environment:
+            - <span class="org-variable-name">REMARK_URL</span>=https://remark42.mydomain   <span class="org-comment-delimiter">#</span><span class="org-comment">in my case: https://remark42.vidal.rosset.net </span>
+            - <span class="org-variable-name">SECRET</span>=********   <span class="org-comment-delimiter"># </span><span class="org-comment">this secret code must be the root password in your server.</span>
+            - <span class="org-variable-name">SITE</span>=remark42.mydomain <span class="org-comment-delimiter"># </span><span class="org-comment">must be the same in the html script </span>
+            - <span class="org-variable-name">STORE_BOLT_PATH</span>=/srv/var/db
+            - <span class="org-variable-name">BACKUP_PATH</span>=/srv/var/backup
+            - <span class="org-variable-name">DEBUG</span>=true
+            - <span class="org-variable-name">AUTH_GOOGLE_CID</span>=130202230458-xxxxxxxxxxxxxxxxxi9645f1.apps.googleusercontent.com
+            - <span class="org-variable-name">AUTH_GOOGLE_CSEC</span>=PZtxxxxxxxxxxxxxxxQW
+            - <span class="org-variable-name">AUTH_GITHUB_CID</span>=bexxxxxxxxxxx5b
+            - <span class="org-variable-name">AUTH_GITHUB_CSEC</span>=cdb50xxxxxxxxxxxxxxxx56
+            - <span class="org-variable-name">AUTH_FACEBOOK_CID</span>=4xxxxxxxxxxx9
+            - <span class="org-variable-name">AUTH_FACEBOOK_CSEC</span>=6axxxxxxxxxxxxxxba
+            - <span class="org-variable-name">NOTIFY_TYPE</span>=telegram
+            - <span class="org-variable-name">NOTIFY_QUEUE</span>=100
+            - <span class="org-variable-name">NOTIFY_TELEGRAM_TOKEN</span>=1049699145:xxxxxxxxxxxxxxxxinc
+            - <span class="org-variable-name">NOTIFY_TELEGRAM_CHAN</span>=mychannel
+            - <span class="org-variable-name">NOTIFY_TELEGRAM_TIMEOUT</span>=5s
+            - <span class="org-variable-name">AUTH_YANDEX_CID</span>=39xxxxxxxxxxxxxxxe1
+            - <span class="org-variable-name">AUTH_YANDEX_CSEC</span>=54d8xxxxxxxxxxxxxxxxxxxd1
+            - <span class="org-variable-name">ADMIN_SHARED_ID</span>=google_45869ca6993225abf667d95eaxxxxxxxxx,github_8721fd76bxxxxxxxx
+            - <span class="org-variable-name">AUTH_EMAIL_ENABLE</span>=true
+            - <span class="org-variable-name">AUTH_EMAIL_HOST</span>=smtp.eu.mailgun.org
+            - <span class="org-variable-name">AUTH_EMAIL_PORT</span>=465
+            - <span class="org-variable-name">AUTH_EMAIL_FROM</span>=postmaster@mg.vidal-rosset.net
+            - <span class="org-variable-name">AUTH_EMAIL_SUBJ</span>=remark42 confirmation
+            - <span class="org-variable-name">AUTH_EMAIL_CONTENT_TYPE</span>=text/html
+            - <span class="org-variable-name">AUTH_EMAIL_TLS</span>=true
+            - <span class="org-variable-name">AUTH_EMAIL_USER</span>=postmaster@mg.vidal-rosset.net
+            - <span class="org-variable-name">AUTH_EMAIL_PASSWD</span>=5697xxxxxxxxxxxxxx-fxxxxx4-dxxxxxxx3
+            - <span class="org-variable-name">AUTH_EMAIL_TIMEOUT</span>=10s
+            <span class="org-comment-delimiter"># </span><span class="org-comment">- ADMIN_PASSWD=password</span>
+        volumes:
+            - ./var:/srv/var
+</pre>
+</div>
+<p>
+To configure your own Google (resp. Facebook, resp. Yandex) accounts
+authentication, follow again <a href="https://github.com/umputun/remark#google-auth-provider">Umputun&rsquo;s explanations</a> in the Readme.  
+</p>
+
+<p>
+To get  email authentication, I  followed the advice of  Umputun; I
+created a <a href="https://www.mailgun.com/">mailgun account</a>, I  declared DNS  as recommended,  and I
+filled  the part  of  docker-compose.yml that  is about  AUTH_EMAIL,
+following  the   first  setup that  I   received from Mailgun  as  soon
+mg.vidal-rosset.net was checked as a valid subdomain.
+</p>
+
+<p>
+That&rsquo;s it for Remark42 setup, let&rsquo;s go now to its installation. 
+</p>
+</div>
+</div>
+<div id="outline-container-remark42_installation" class="outline-2">
+<h2 id="remark42_installation"><span class="section-number-2">3</span> Remark42 installation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If your  docker-compose.yml is correctly written,  the installation
+of Remark42 via  Docker is very simple.  To show it, I  am going to
+uninstall  it and  reinstall it,  because in  giving these  command
+lines, you will always be able to make a new install if necessary.
+First, the SSH connection in my <i>/home/joseph</i> into my server, root
+passwd,     and    change     of    directory     to    go     into
+<i>/var/www/vidal-rosset/html/remark</i>: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">joseph@163.172.97.30<span class="org-string">'s password: </span>
+<span class="org-string">Linux mail.vidal-rosset.net 4.19.0-6-amd64 #1 SMP Debian 4.19.67-2+deb10u1 (2019-09-20) x86_64</span>
+
+<span class="org-string">The programs included with the Debian GNU/Linux system are free software;</span>
+<span class="org-string">the exact distribution terms for each program are described in the</span>
+<span class="org-string">individual files in /usr/share/doc/*/copyright.</span>
+
+<span class="org-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span>
+<span class="org-string">permitted by applicable law.</span>
+<span class="org-string">Last login: Mon Nov 11 10:02:25 2019 from 91.168.121.220</span>
+<span class="org-string">joseph@mail:~$ su -</span>
+<span class="org-string">Password: </span>
+<span class="org-string">root@mail:~# cd /var/www/vidal-rosset/html/remark/</span>
+<span class="org-string">root@mail:/var/www/vidal-rosset/html/remark# </span>
+</pre>
+</div>
+
+<p>
+With    <code>cat   docker-compose.yml</code>    I   check    the   content    of
+docker-compose.yml  in remark  directory. Remark42  is installed  in a
+container,  I  need to  know  its  ID in  order  to  delete it  before
+reinstalling it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# docker container ls -a
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                  PORTS                    NAMES
+55c87ca05274        umputun/remark42:latest   <span class="org-string">"/entrypoint.sh serv&#8230;"</span>   26 hours ago        Up 10 hours (healthy)   0.0.0.0:8080-&gt;8080/tcp   remark42 
+</pre>
+</div>
+
+<p>
+I force the remove of CONTAINER ID 55c87ca05274:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# docker rm -f 55c87ca05274
+55c87ca05274
+root@mail:/var/www/vidal-rosset/html/remark# 
+</pre>
+</div>
+
+<p>
+I check that  there no more valid container with  <code>docker container ls
+-a</code> again:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+root@mail:/var/www/vidal-rosset/html/remark# 
+</pre>
+</div>
+
+<p>
+Now the installation of Remark42 in two steps. First step:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# docker pull umputun/remark42
+Using default tag: latest
+latest: Pulling from umputun/remark42
+Digest: sha256:ce85044f6b8d53a9a21b9825929d65fea5867d1bd2d37026222831feaaf3d3a3
+Status: Image is up to date for umputun/remark42:latest
+docker.io/umputun/remark42:latest
+</pre>
+</div>
+
+<p>
+Second step:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# docker-compose pull &amp;&amp; docker-compose up -d
+Pulling remark ... done
+Creating remark42 ... done
+root@mail:/var/www/vidal-rosset/html/remark# 
+</pre>
+</div>
+
+<p>
+Finally,  I  check  via  this   command  that  Remark42  is  correctly
+connected:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# curl http://127.0.0.1:8080/ping
+pongroot@mail:/var/www/vidal-rosset/html/remark# 
+</pre>
+</div>
+
+<p>
+In fact, &ldquo;pong&rdquo; is the output to the ping input, you must read: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">root@mail:/var/www/vidal-rosset/html/remark# curl http://127.0.0.1:8080/ping
+pong
+root@mail:/var/www/vidal-rosset/html/remark# 
+</pre>
+</div>
+
+<p>
+That&rsquo;s it. Remark42 is installed <i>in the server</i>.
+</p>
+
+<p>
+Now in each web page that I  want to see the comments allowed, I paste
+this code:<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"> &lt;script&gt; var remark<span class="org-org-latex-and-related">_config</span> = {host: "<span class="org-org-link"><a href="https://remark42.vidal-rosset.net">https://remark42.vidal-rosset.net</a></span>", 
+ <span class="org-italic">// hostname of remark server, same as REMARK</span><span class="org-italic"><span class="org-org-latex-and-related">_URL</span></span><span class="org-italic"> in backend config, </span>
+<span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> e.g. "</span><span class="org-org-link"><span class="org-italic"><a href="https://demo.remark42.com">https://demo.remark42.com</a></span></span><span class="org-italic">" site</span><span class="org-italic"><span class="org-org-latex-and-related">_id</span></span><span class="org-italic">: 'remark42.vidal-rosset.net',components: ['embed', 'last-comments', 'counter'], </span>
+<span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> optional param; which components to load. default to ["embed"]</span>
+<span class="org-italic">                          </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> to load all components define components as ['embed', 'last-comments', 'counter']</span>
+<span class="org-italic">                          </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> available component are:</span>
+<span class="org-italic">                          </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic">     - 'embed': basic comments widget</span>
+<span class="org-italic">                          </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic">     - 'last-comments': last comments widget, see `Last Comments` section below</span>
+<span class="org-italic">                          </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic">     - 'counter': counter widget, see `Counter` section below</span>
+<span class="org-italic">    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> url: '', </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> optional param; if it isn't defined</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> `window.location.origin + window.location.pathname` will be used,</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> Note that if you use query parameters as significant part of url</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> (the one that actually changes content on page)</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> you will have to configure url manually to keep query params, as</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> `window.location.origin + window.location.pathname` doesn't contain query params and</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> hash. For example default url for `</span><span class="org-org-link"><span class="org-italic"><a href="https://example/com/example-post?id=1#hash">https://example/com/example-post?id=1#hash</a></span></span><span class="org-italic">`</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> would be `</span><span class="org-org-link"><span class="org-italic"><a href="https://example/com/example-post">https://example/com/example-post</a></span></span><span class="org-italic">`.</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> The problem with query params is that they often contain useless params added by</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> various trackers (utm params) and doesn't have defined order, so Remark treats differently</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> all this examples:</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> </span><span class="org-org-link"><span class="org-italic"><a href="https://example.com/?postid=1&amp;date=2007-02-11">https://example.com/</a></span></span><span class="org-org-link"><a href="https://example.com/?postid=1&amp;date=2007-02-11">?postid=1&amp;date=2007-02-11</a></span>
+                    <span class="org-italic">// </span><span class="org-org-link"><span class="org-italic"><a href="https://example.com/?date=2007-02-11&amp;postid=1">https://example.com/</a></span></span><span class="org-org-link"><a href="https://example.com/?date=2007-02-11&amp;postid=1">?date=2007-02-11&amp;postid=1</a></span>
+                    <span class="org-italic">// </span><span class="org-org-link"><span class="org-italic"><a href="https://example.com/?date=2007-02-11&amp;postid=1&amp;utm_source=google">https://example.com/</a></span></span><span class="org-org-link"><a href="https://example.com/?date=2007-02-11&amp;postid=1&amp;utm_source=google">?date=2007-02-11&amp;postid=1&amp;utm</a></span><span class="org-org-link"><span class="org-org-latex-and-related"><a href="https://example.com/?date=2007-02-11&amp;postid=1&amp;utm_source=google">_source</a></span></span><span class="org-org-link"><a href="https://example.com/?date=2007-02-11&amp;postid=1&amp;utm_source=google">=google</a></span>
+                    <span class="org-italic">//</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> If you deal with query parameters make sure you pass only significant part of it</span>
+<span class="org-italic">                    </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> in well defined order</span>
+<span class="org-italic">     max</span><span class="org-italic"><span class="org-org-latex-and-related">_shown</span></span><span class="org-italic">_comments: 10, </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> optional param; if it isn't defined default value (15) will be used</span>
+<span class="org-italic">           theme: 'light', </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> optional param; if it isn't defined default value ('light') will be used</span>
+<span class="org-italic">   </span><span class="org-italic"><span class="org-italic">//</span></span><span class="org-italic"> page</span><span class="org-italic"><span class="org-org-latex-and-related">_title</span></span><span class="org-italic">: '' //</span> optional param; if it isn't defined `document.title` will be used
+  };
+
+(function(c) {
+   for(var i = 0; i &lt; c.length; i++){
+     var d = document, s = d.createElement('script');
+     s.src = remark<span class="org-org-latex-and-related">_config.host</span> + '<span class="org-italic">/web/</span>' +c[i] +'.js';
+            s.defer = true;
+     (d.head || d.body).appendChild(s);
+   }
+    })(remark<span class="org-org-latex-and-related">_config.components</span> || ['embed', 'last-comments', 'counter']);
+  &lt;/script&gt;
+ &lt;div id="remark42"&gt;&lt;/div&gt; 
+</pre>
+</div>
+
+<p>
+I hope that this post will help  you to install Remark42. Feel free to
+send your remark here! 
+</p>
+</br>
+<script>
+  var remark_config = {
+    host: "https://remark42.vidal-rosset.net", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'remark42.vidal-rosset.net',
+    components: ['embed', 'last-comments', 'counter'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    url: '', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: ''  // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed', 'last-comments', 'counter']);
+</script>
+<div id="remark42"></div>
+<!-- Début code Web-Stat v 6.3 -->
+<span id="wts1931943">&nbsp;</span><script>
+var wts=document.createElement('script');wts.type='text/javascript';
+wts.async=true;wts.src='https://wts.one/1/1931943/log6_2.js';
+document.getElementById('wts1931943').appendChild(wts);
+</script><noscript><a href="https://www.web-stat.fr">
+<img src="https://wts.one/6/1/1931943.gif" 
+alt="statistiques web Web-Stat"></a></noscript>
+<!-- Fin code Web-Stat v 6.3 -->
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+More exactly, I put in  the Footer section of <a href="https://github.com/itf/org-export-head">org-export-head</a> code
+this html  code between  <code>#+BEGIN_EXPORT html</code> and  <code>#+END_EXPORT</code>, in
+replacement of the code for Disqus given by Ivan. 
+</p>
+</br>
+<script>
+  var remark_config = {
+    host: "https://remark42.vidal-rosset.net", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'remark42.vidal-rosset.net',
+    components: ['embed', 'last-comments', 'counter'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    url: '', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: ''  // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed', 'last-comments', 'counter']);
+</script>
+<div id="remark42"></div>
+<!-- Début code Web-Stat v 6.3 -->
+<span id="wts1931943">&nbsp;</span><script>
+var wts=document.createElement('script');wts.type='text/javascript';
+wts.async=true;wts.src='https://wts.one/1/1931943/log6_2.js';
+document.getElementById('wts1931943').appendChild(wts);
+</script><noscript><a href="https://www.web-stat.fr">
+<img src="https://wts.one/6/1/1931943.gif" 
+alt="statistiques web Web-Stat"></a></noscript>
+<!-- Fin code Web-Stat v 6.3 --></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Joseph Vidal-Rosset</p>
+<p class="date">Date: 2020-01-02 jeu. 14:18</p>
+<p class="author">Blog:  <a href="https://www.vidal-rosset.net/">https://wwww.vidal-rosset.net</a></p>
+<p class="creator">Made with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.3.1) and <a href="https://github.com/itf/org-export-head">Org export head (Many thanks to  Ivan Tadeu Ferreira Antunes Filho!;)</a> </p>
+</div>
+</body>
+</html>

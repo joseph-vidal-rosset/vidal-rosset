@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-12-21 sam. 08:24 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descartes&rsquo;s first argument for the existence of God</title>
+<meta name="generator" content="Org mode">
+<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="stylesheet" type="text/csl" href="ieee.csl"/>
+<link rel="icon" href="ico/favicon.ico" type="image/x- icon">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script>
+ MathJax = {
+  loader: {
+    load: ['[tex]/bussproofs']
+  },
+  tex: {
+    packages: {'[+]': ['bussproofs']},
+    tags: 'ams'
+  }
+};
+</script>
+<script id="MathJax-script " async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content">
+<div class="head">
+<div class="title">
+<p>
+<a href="index.html">Joseph Vidal-Rosset - Personal Blog</a>
+</p>
+
+</div>
+
+<menu>
+<ul class="org-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="mailing_list_educasupphilo.html">Mailing list educasup.philo</a></li>
+</ul>
+</menu>
+
+</div>
+
+<p>
+ </p><h1>
+Descartes&rsquo;s first argument for the existence of God 
+ </h1><p>
+</p>
+
+<p>
+<span class=page-date> <small> 
+ 2019-12-20, updated 2019-12-21 <a href="proof_checkers.html">next</a> - <a href="footnotes.html">previous</a>    
+</small> </span> 
+</p>
+<nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#first_subproof">2. First Subproof</a></li>
+<li><a href="#second_subproof">3. Second Subproof</a></li>
+<li><a href="#conclusion">4. Conclusion</a></li>
+</ul>
+</div>
+</nav>
+<p>
+In the language of  first-order logic, I provide in  this post a proof
+in natural deduction which translates the argument that Descartes gave
+in the Third Meditation as evidence of the existence of God. 
+</p>
+<div id="outline-container-introduction" class="outline-2">
+<h2 id="introduction"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I am  going to  focus only on  the logical  structure of
+Descartes&rsquo;s argument  <a href="#citeproc_bib_item_1">[1]</a>, to prove that  this argument
+is, from a deductive point of view, <i>intuitionistically valid</i>. Let us
+recall these important definitions: 
+</p>
+
+<div class="defi">
+<p>
+An argument  is <i>deductively valid</i> if  and only if its  conclusion is
+true whenever its premises are all true. <a href="#citeproc_bib_item_2">[2, p. 17]</a>
+</p>
+
+</div>
+<div class="defi">
+<p>
+An  argument is  <i>sound</i>  if and  only  if  it is  valid  and all  its
+premises are true. <a href="#citeproc_bib_item_2">[2, p. 18]</a>
+</p>
+
+</div>
+
+<p>
+Therefore, the validity  and the soundness of  Descartes&rsquo;s argument are
+different issues, and there  are sometimes confused, for
+example, by  Williams when he wrote:
+</p>
+<blockquote>
+<p>
+The trouble  with Descartes’s system is  not that it is  circular; nor
+that there is an illegitimate relation between the proofs of God and the
+clear and distinct perceptions; nor that there is a special problem
+about the proofs of God when they are not intuited. I have argued
+that in these respects, it is structurally sound. The trouble is that
+the proofs of God are invalid and do not convince even when they
+are supposedly being intuited.<a href="#citeproc_bib_item_3">[3, p. 195]</a>
+</p>
+</blockquote>
+
+<p>
+<i>Pace</i>  Williams,  I am  going  to  prove  in first-order  logic  that
+Descartes&rsquo;s argument  is <i>valid</i>, that  is <i>deductively valid</i>.  To do
+this, I need the following formal lexicon: 
+</p>
+
+<ul class="org-ul">
+<li><i>c</i> = &ldquo;the <i>cogito</i>&rdquo;,</li>
+<li><i>d</i> = &ldquo;the idea of God&rdquo;,</li>
+<li>\(x \geqslant y\) = &ldquo;the degree of  reality of <i>x</i> is at least equal
+to that of <i>y</i>&rdquo;,</li>
+<li><i>Sxy</i> = &ldquo;the formal reality <i>x</i>  is the total and efficient cause of
+the  objective reality  <i>y</i>&rdquo; (the  meaning of  &ldquo;formal reality&rdquo;  and
+&ldquo;objective reality&rdquo; are explained below),</li>
+<li><i>Rcy</i> = &ldquo;<i>y</i> is a thought of the <i>cogito</i>&rdquo;,</li>
+<li>Last, to the usual rules of natural deduction for first-order logic,
+I  add  this  couple  of   rules  derived  from  the  definition  of
+\(\geqslant\),  where   <i>defm.</i>  and  <i>defs.</i>  are  the  respective
+abbreviations for the <i>definiens</i> and  the <i>definiendum</i> that are at
+the bottom of each rule:</li>
+</ul>
+\begin{array}[tb]{ccc}
+\dfrac{x \geqslant y}{(x > y) \lor (x = y)}\scriptsize{\geqslant defs.}& & \dfrac{ (x > y) \lor (x = y)}{x \geqslant y}\scriptsize{\geqslant defm.} \\
+\end{array}
+
+<p>
+The core of the first proof of the existence of God in the
+<i>Third Meditation</i> is contained in the following text: 
+</p>
+
+<blockquote>
+<p>
+And so there  remains only the idea  of God, in which  I must consider
+whether there  is anything that could  not derive from myself.  By the
+name   ‘God’  I   understand   an   inﬁnite,  independent,   supremely
+intelligent,  supremely  powerful substance,  by  which  I myself  and
+whatever else  exists (if anything  else does exist) was  created. But
+certainly, all  these properties are  such that, the more  carefully I
+consider them,  the less it  seems possible  that they can  be derived
+from me alone. And so I must conclude that it necessarily follows from
+all that has been said up to  now that God exists. For indeed, even if
+the idea of substance is in me as  a result of the very fact that I am
+a substance, the  idea of an inﬁnite substance would  not therefore be
+in me, since I am ﬁnite, unless it derived from some substance that is
+really inﬁnite.<a href="#citeproc_bib_item_1">[1, p. 32]</a>  
+</p>
+</blockquote>
+
+<p>
+Descartes&rsquo;s  argument  is  the  deduction   of  a  conjunction  of  two
+statements, deduction which can therefore  be divided into two subproofs. To
+use  Descartes&rsquo;s  vocabulary,  the   last  sentence  in  the  previous
+quotation means  that the objective  reality of the idea  of substance
+can  be caused  by  the formal  reality of  the  <i>cogito</i> because  the
+<i>cogito</i> is  a substance, but  being a finite substance,  the <i>cogito</i>
+cannot be the cause of his  idea of God, because the objective reality
+of this idea is an infinite substance, <i>and</i> only a formal reality of an
+infinite substance  can be  the cause of  this representation.  On
+this  point, Williams&rsquo;s  explanations  are the  clearest  I have  ever
+read:  
+</p>
+<blockquote>
+<p>
+He  calls  the  reality  that anything  possesses  intrinsically,  its
+<i>formal</i> reality; and  he calls the reality that an  idea possesses in
+virtue of its object, its <i>objective</i> reality. Thus all ideas have the
+same  degree of  formal reality,  but different  degrees of  objective
+reality – because their objects have, or would have, different degrees
+of  (formal) reality.  Lastly, in  expressing the  principle that  the
+cause of anything must contain at least as much reality as the effect,
+he says that the reality of the  effect must exist in the cause either
+<i>formally</i>  or  <i>eminently</i>: <i>formally</i>,  if  there  is just  as  much
+reality in  the cause as in  the effect, and <i>eminently</i>,  if there is
+more reality in the cause than in  the effect, the cause being of some
+higher type than  the effect (this will  be so with works  of art, the
+mind of the artist  being of a higher type of reality  than any of his
+products).  Putting all  these terms  together, Descartes’s  principle
+about the  causation of ideas  comes out like  this: the cause  of any
+idea must contain either formally or  eminently as much reality as the
+idea           possesses          both           formally          and
+objectively.<a href="#citeproc_bib_item_3">[3, p. 125]</a> 
+</p>
+</blockquote>
+
+<p>
+In its simplest expression, the conclusion of Descartes&rsquo;s argument says
+that the cogito is not the cause of  the idea of ​​God <i>and</i> that there is
+something which is the  cause of this idea and which  is as perfect as
+this idea of ​​God, conjunction that can be translated by
+</p>
+
+\begin{equation}
+\label{one}
+\lnot Scd \land \exists x(Sxd \land (x = d))
+\end{equation}
+
+<p>
+There will be therefore a first subproof  to deduce the formula on the left
+of conjunction \eqref{one} that is
+</p>
+\begin{equation}
+\label{two}
+\lnot Scd
+\end{equation}
+<p>
+and the  second subproof will be  the deduction of the  formula on the
+right of conjunction \eqref{one}. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-first_subproof" class="outline-2">
+<h2 id="first_subproof"><span class="section-number-2">2</span> First Subproof</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Three premises are  needed to deduce \eqref{two}.  The  first of them
+is the definition of the idea of God: 
+</p>
+
+<blockquote>
+<p>
+The  idea of  God is  &ldquo;the  idea of  a supremely  perfect and  inﬁnite
+being.&rdquo;  <a href="#citeproc_bib_item_1">[1, p. 33]</a>
+</p>
+</blockquote>
+
+<p>
+Descartes&rsquo;s point  is that the  representative content of the  idea of
+God is  such that it is  impossible for the <i>cogito</i>  to get the
+intellection  of  a  perfection   that  would  be  greater.  Therefore,
+the formalization of  <a href="anselms_argument_in_first-order_logic.html">Anselm&rsquo;s definition of God</a> can be  used again to
+translate Descartes&rsquo;s claim: 
+</p>
+\begin{equation}
+\label{three}
+\forall y \lnot(y > d)
+\end{equation}
+<p>
+the idea  of God is the  idea of the  being that is such  that nothing
+greater can be thought of. 
+</p>
+
+<p>
+Contrarily to  the idea of God,  I can always conceive  something more
+perfect than  I am.   Therefore, expressed at  the first  personn, our
+second premise would say &ldquo;I have certainly not all the perfections that
+I  conceive in  the idea  of  God&rdquo; and,  in our  lexicon, this  second
+premise  says &ldquo;it  is  false  that the  degree  of  perfection of  the
+<i>cogito</i> is the same as the degree of perfection of the idea of God&rdquo;: 
+</p>
+
+\begin{equation}
+\label{four}
+\lnot(c = d)
+\end{equation}
+
+<div class="rema">
+<p>
+Some readers  will find  maybe useful the  following explanation  on a
+part of the first subproof.  Note that from \eqref{three} and \eqref{four}
+it is possible to deduce 
+\(\lnot(c \geqslant d)\):
+\[
+\forall y \lnot(y > d),\lnot(c = d) \vdash \lnot(c \geqslant d)
+\]
+</p>
+
+<div class="proof">
+<div class="proof-medium">
+\begin{prooftree}
+\AxiomC{$\overset{1}{(c > d) \lor (c = d)}$}
+\AxiomC{$\forall y \lnot(y > d)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\lnot(c > d)$}
+\AxiomC{$\overset{2}{c > d}$}
+\RightLabel{$\scriptsize{\lnot E}$}
+\BinaryInfC{$\bot$}
+\AxiomC{$\lnot(c = d)$}
+\AxiomC{$\overset{2}{c = d}$}
+\RightLabel{$\scriptsize{\lnot E}$}
+\BinaryInfC{$\bot$}
+\RightLabel{$\scriptsize{\lor E, 2}$}
+\TrinaryInfC{$\bot$}
+\RightLabel{$\scriptsize{\lnot I, 1}$}
+\UnaryInfC{$\lnot((c > d) \lor (c =d))$}
+\RightLabel{$\scriptsize{\geqslant defm.}$}
+\UnaryInfC{$\lnot(c \geqslant d)$}
+\end{prooftree}
+
+</div>
+
+</div>
+<p>
+\(\textcolor{white}{text}\)
+</p>
+
+<p>
+and,  once  erased  all   the  discharged  assumptions,  the  previous
+deduction is reducible to the following  deduction that is going to be
+a <i>part</i> of the first subproof: 
+</p>
+\begin{prooftree}
+\AxiomC{$\forall y\lnot(y > d)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\lnot(c > d)$}
+\AxiomC{$\lnot(c = d)$}
+\RightLabel{$\scriptsize{DMi}$}
+\BinaryInfC{$\lnot(c \geqslant d)$}
+\end{prooftree}
+
+</div>
+<div class="rema">
+<p>
+Note that the sequent
+\[
+\lnot(c > d), \lnot(c = d) \vdash \lnot((c > d) \lor (c = d))
+\]
+has just been proved above; it is an instance of De Morgan&rsquo;s laws that
+is intuitionistically derivable  (hence the label <i>DMi</i>).   It is also
+well known that this other instance of De Morgan Law: 
+\[
+\lnot((c > d) \land (c = d)) \vdash \lnot(c > d) \lor \lnot (c = d)
+\]
+is  <i>not</i>  intuitionistically  valid,  but  valid  only  in  classical
+logic; such a deduction does not exist in  Descartes&rsquo;s argument. 
+</p>
+
+</div>
+
+<p>
+Finally,  a specific  application  of the causality principle is
+necessary for Descartes&rsquo; argument, as clearly shown by what he wrote:
+</p>
+<blockquote>
+<p>
+Now, it is manifest  by the natural light that there  must be at least
+as much reality in the total and  efficient cause as in its effect. For,
+I ask, from where could the effect  derive its reality, if not from the
+cause? And  how could the  cause give it reality,  if it did  not also
+possess it? Hence it follows, both that nothing can come from nothing,
+and that  what is more  perfect (that  is, what contains  more reality
+within itself)  cannot derive from what  is less perfect. And  this is
+not only  plainly true  of those  effects whose  reality is  actual or
+formal, but  also of  ideas, in  which only  the objective  reality is
+considered. <a href="#citeproc_bib_item_1">[1, p. 29]</a> 
+</p>
+</blockquote>
+
+<p>
+I call &ldquo;principle of applied  causality&rdquo; this application of causality
+principle from formal realities  to objective realities that represent
+them: &ldquo;A formal  reality <i>x</i> is the cause of  an objective reality <i>y</i>
+only if the degree  of perfection of <i>x</i> is at least  equal to that of
+<i>y</i>,&rdquo; which I translate by: 
+</p>
+\begin{equation}
+\label{five}
+\forall x \forall y(Sxy \to x \geqslant y)
+\end{equation}
+
+<p>
+Formula \eqref{five} provides the  third and last premise necessary  to get
+the first step of Descartes&rsquo;s argument that concludes that the <i>cogito</i>
+is not the cause of the idea of God. Indeed, formula \eqref{two}
+is  deducible  from  the   conjunction  of  \eqref{three},  \eqref{four}  and
+\eqref{five}:
+</p>
+
+\begin{equation}
+\label{six}
+\forall y \lnot(y > d), \lnot(c = d), \forall x \forall y(Sxy \to x \geqslant y) \vdash \lnot  Scd
+\end{equation}
+
+<div class="proof">
+\begin{prooftree}
+\AxiomC{$\forall y\lnot(y > d)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\lnot(c > d)$}
+\AxiomC{$\lnot(c = d)$}
+\RightLabel{$\scriptsize{DMi}$}
+\BinaryInfC{$\lnot(c \geqslant d)$}
+\AxiomC{$\forall x\forall y(Sxy \to x \geqslant y)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\forall y(Scy \to c \geqslant y)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$Scd \to c \geqslant d$}
+\AxiomC{$\overset{1}{Scd}$}
+\RightLabel{$\scriptsize{\to E}$}
+\BinaryInfC{$c \geqslant d$}
+\RightLabel{$\scriptsize{\lnot E}$}
+\BinaryInfC{$\bot$}
+\RightLabel{$\scriptsize{\lnot I,1}$}
+\UnaryInfC{$\lnot Scd$}
+\end{prooftree}
+
+</div>
+<p>
+\(\textcolor{white}{text}\)
+</p>
+</div>
+</div>
+<div id="outline-container-second_subproof" class="outline-2">
+<h2 id="second_subproof"><span class="section-number-2">3</span> Second Subproof</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The second  step of Descartes&rsquo;s  argument must  prove that there  is a
+cause of the  idea of God and  that this formal reality  of this cause
+has necessarily the  same perfection as the objective  reality of this
+idea, in  other words,  that this  cause is God.   In the  language of
+first-order logic with our lexicon, the second subproof of Descartes&rsquo;s
+argument must be the deduction of the following formula which is on the
+right of conjunction \eqref{one}: 
+</p>
+
+\begin{equation}
+\label{seven}
+\exists x(Sxd \land (x = d))
+\end{equation}
+
+<p>
+The deduction of  \(\exists x(Sxd)\) is not difficult and is based on
+two premises only;  &ldquo;Every idea that the <i>cogito</i> thinks  has a cause&rdquo;
+for the first, and  &ldquo;The idea of God is thought  by the <i>cogito</i>&rdquo; for
+the second, respectively: 
+</p>
+\begin{equation}
+\label{eight}
+\forall y(Rcy \to \exists x Sxy)
+\end{equation}
+<p>
+and 
+</p>
+\begin{equation}
+\label{nine}
+Rcd
+\end{equation}
+
+<p>
+It is now quite easy to deduce \(\exists x(Sxd)\) from \eqref{eight} and
+\eqref{nine}:
+</p>
+
+\begin{prooftree}
+\AxiomC{$\forall y(Rcy \to \exists xSxy)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$Rcd \to \exists x Sxd$}
+\AxiomC{$Rcd$}
+\RightLabel{$\scriptsize{\to E}$}
+\BinaryInfC{$\exists x Sxd$}
+\end{prooftree}
+
+<p>
+From this  result, it  is now possible  to deduce  \eqref{seven} without
+additional premise, but  it needs more work.  Here is  the second part
+of the proof that shows that sequent \eqref{ten} is valid: 
+</p>
+\begin{equation}
+\label{ten}
+\forall y(Rcy \to \exists x Sxy), Rcd, \forall x \forall y(Sxy \to x \geqslant y), \forall y \lnot(y > d) \vdash \exists x(Sxd \land (x = d))
+\end{equation}
+
+<div class="proof">
+<div class="proof-small-left">
+\begin{prooftree}
+\AxiomC{$\forall y(Rcy \to \exists xSxy)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$Rcd \to \exists x Sxd$}
+\AxiomC{$Rcd$}
+\RightLabel{$\scriptsize{\to E}$}
+\BinaryInfC{$\exists x Sxd$}
+\AxiomC{$\overset{2}{Sbd}$}
+\AxiomC{$\forall x \forall y(Sxy \to x \geqslant y)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\forall y(Sby \to b \geqslant y)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$Sbd \to b \geqslant d$}
+\AxiomC{$\overset{2}{Sbd}$}
+\RightLabel{$\scriptsize{\to E}$}
+\BinaryInfC{$b \geqslant d$}
+\RightLabel{$\scriptsize{\geqslant defs.}$}
+\UnaryInfC{$((b > d)\lor(b = d))$}
+\AxiomC{$\forall y\lnot(y > d)$}
+\RightLabel{$\scriptsize{\forall E}$}
+\UnaryInfC{$\lnot(b > d)$}
+\AxiomC{$\overset{3}{b > d}$}
+\RightLabel{$\scriptsize{\lnot E}$}
+\BinaryInfC{$\bot$}
+\RightLabel{$\scriptsize{\bot E}$}
+\UnaryInfC{$b = d$}
+\AxiomC{$\overset{3}{b = d}$}
+\RightLabel{$\scriptsize{\lor E, 3}$}
+\TrinaryInfC{$b = d$}
+\RightLabel{$\scriptsize{\land I}$}
+\BinaryInfC{$Sbd \land (b = d)$}
+\RightLabel{$\scriptsize{\exists I}$}
+\UnaryInfC{$\exists x(Sxd \land (x = d))$}
+\RightLabel{$\scriptsize{\exists E, 2}$}
+\BinaryInfC{$\exists x(Sxd \land (x = d))$}
+\end{prooftree}
+
+</div>
+
+</div>
+<p>
+\(\textcolor{white}{text}\)
+It is now  trivial to deduce \eqref{one} from  the conjunction of
+the proofs of \eqref{six} and \eqref{ten}: 
+</p>
+
+\begin{equation}
+\label{eleven}
+\forall y \lnot(y > d),\lnot(c = d), \forall x \forall y(Sxy \to x \geqslant y), \forall y(Rcy \to \exists x Sxy), Rcd \vdash \lnot Scd \land \exists x(Sxd \land (x = d))
+\end{equation}
+
+<div class="proof">
+<p>
+From  the  respective  proofs  of sequents  \eqref{six}  and  \eqref{ten},
+\eqref{eleven}  is proved  by  application of  the  rule of  conjunction
+introduction.  Therefore \eqref{one}  is  an analytic  consequence of  the
+conjunction  of   assumptions  \eqref{three},   \eqref{four},  \eqref{five},
+\eqref{eight} and \eqref{nine}: 
+</p>
+
+
+<figure>
+<img src="./png/Descartes-proof.png" alt="Descartes-proof.png">
+
+</figure>
+
+</div>
+<div class="rema">
+<p>
+The fact that  \eqref{eleven} is intuitionistically valid  has been also
+checked with some provers; see this <a href="proof_checkers.html">post</a>.
+</p>
+
+</div>
+<p>
+\(\textcolor{white}{text}\)
+</p>
+</div>
+</div>
+<div id="outline-container-conclusion" class="outline-2">
+<h2 id="conclusion"><span class="section-number-2">4</span> Conclusion</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Three points to conclude. First, this analysis
+of Descartes&rsquo;s argument provides a logical result that is in agreement
+with  Vuillemin&rsquo;s  point  of   view  according  to  which  Descartes&rsquo;s
+philosophical            system           is            intuitionistic
+<a href="#citeproc_bib_item_4">[4]</a>, <a href="#citeproc_bib_item_5">[5]</a>.  Indeed, note that, by contrast with
+Anselm&rsquo;s, Descartes&rsquo;s  does not need any  specifically classical rule,
+nor existence predicate.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> 
+</p>
+
+<p>
+Second,  once  this  argument  is  faithfully  formalized  in  natural
+deduction,  becomes   transparent  a  logical  relation   between  two
+principles  which, according  to  Gueroult, are  basic in  Descartes&rsquo;s
+theory of truth:  the principle of correspondence of  true ideas with
+the  objects  represented   by  these  ideas,  and   the  principle  of
+causality. Gueroult wrote: 
+</p>
+<blockquote>
+<p>
+Without the principle  of causality, it would be impossible  for me to
+attain  the   existence  of   God.  Without   the  principle   of  the
+correspondence  of  the  idea  with  what  is  ideated,  it  would  be
+impossible to  demonstrate that  my idea  of God is  the image  of his
+being and allows me to know him,  since to prove that something is the
+effect  of something  else  is  not sufficient  to  establish that  it
+resembles it. <a href="#citeproc_bib_item_6">[6, p. 119]</a> 
+</p>
+</blockquote>
+<p>
+He added later:
+</p>
+<blockquote>
+<p>
+The principle of the conformity of  the idea with what is ideated only
+affirms a  resemblance between two  terms; the principle  of causality
+affirms an equation -<i>ad minimum</i>- between two terms. 
+</p>
+</blockquote>
+<p>
+And he concluded: 
+</p>
+<blockquote>
+<p>
+The quantity of perfection contained in an idea cannot be evaluated by
+its resemblance  to the  thing, since this  resemblance is  unknown <i>a
+priori</i>,      and       must,      on      the       contrary,      be
+established.<a href="#citeproc_bib_item_6">[6, p. 133]</a> 
+</p>
+</blockquote>
+<p>
+The proof above  shows that the resemblance that is  the equality of
+perfection between the idea of God and God is logically deduced from
+the  principle  of causality  and,  moreover,  that such  a  resemblance
+between an  idea and &ldquo;what  is ideated&rdquo; can  be deduced only  in the
+case of the idea of God. 
+</p>
+
+<p>
+Third, the result of this logical  analysis now leads me to a single
+question: Descartes&rsquo;s argument being deductively  valid, is it sound, I
+mean, are  these five premises  all true? For  the sake of  brevity, I
+reserve an answer to this question for another publication.
+</p>
+</br>
+<script>
+  var remark_config = {
+    host: "https://remark42.vidal-rosset.net", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'remark42.vidal-rosset.net',
+    components: ['embed', 'last-comments', 'counter'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    url: '', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: ''  // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed', 'last-comments', 'counter']);
+</script>
+<div id="remark42"></div>
+
+<style>.csl-left-margin{float: left; padding-right: 0em;} .csl-right-inline{margin: 0 0 0 1.7999999999999998em;}</style><h2>References</h2>
+<div class="csl-bib-body">
+  <div class="csl-entry"><a name="citeproc_bib_item_1"></a>
+    <div class="csl-left-margin">[1]</div><div class="csl-right-inline">R. Descartes, <i>Meditations on First Philosophy: with Selections from the Objections and Replies</i>. Oxford: OUP Oxford, 2008. </div>
+  </div>
+  <div class="csl-entry"><a name="citeproc_bib_item_2"></a>
+    <div class="csl-left-margin">[2]</div><div class="csl-right-inline">D. A. Bonevac, <i>Deduction: Introductory Symbolic Logic</i>. Malden, MA, U.S.A.: Blackwell Pub., 2003. </div>
+  </div>
+  <div class="csl-entry"><a name="citeproc_bib_item_3"></a>
+    <div class="csl-left-margin">[3]</div><div class="csl-right-inline">B. Williams, <i>Descartes: The Project of Pure Enquiry</i>, 1 edition. London ; New York: Routledge, 2005. </div>
+  </div>
+  <div class="csl-entry"><a name="citeproc_bib_item_4"></a>
+    <div class="csl-left-margin">[4]</div><div class="csl-right-inline">J. Vuillemin, “Trois philosophes intuitionnistes: Epicure, Descartes et Kant,” <i>Dialectica</i>, vol. 35, no. 1, pp. 21–41, 1981 [Online]. Available: <a href="http://dx.doi.org/10.1111/j.1746-8361.1981.tb01495.x">http://dx.doi.org/10.1111/j.1746-8361.1981.tb01495.x</a></div>
+  </div>
+  <div class="csl-entry"><a name="citeproc_bib_item_5"></a>
+    <div class="csl-left-margin">[5]</div><div class="csl-right-inline">J. Vuillemin, <i>Necessity or Contingency: The Master Argument</i>, vol. CSLI Publications, 1996. </div>
+  </div>
+  <div class="csl-entry"><a name="citeproc_bib_item_6"></a>
+    <div class="csl-left-margin">[6]</div><div class="csl-right-inline">M. Gueroult, <i>Descartes’ Philosophy Interpreted According to the Order of Reasons. Vol. 1, The Soul and God</i>, 1st ed., vol. 1. Minneaopolis: University of Minnesota Press, 1984. </div>
+  </div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+The fact that  \eqref{eleven} is intuitionistically valid  has been also
+checked with some provers; see this <a href="proof_checkers.html">post</a>.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Joseph Vidal-Rosset</p>
+<p class="date">Date: 2019-12-21 sam. 08:24</p>
+<p class="author">Blog:  <a href="https://www.vidal-rosset.net/">https://wwww.vidal-rosset.net</a></p>
+<p class="creator">Made with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.3) and <a href="https://github.com/itf/org-export-head">Org export head (Many thanks to  Ivan Tadeu Ferreira Antunes Filho!;)</a> </p>
+</div>
+</body>
+</html>

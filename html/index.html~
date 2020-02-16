@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-12-20 ven. 17:16 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>index</title>
+<meta name="generator" content="Org mode">
+<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="stylesheet" type="text/csl" href="ieee.csl"/>
+<link rel="icon" href="ico/favicon.ico" type="image/x- icon">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div class="head">
+<div class="title">
+<p>
+<a href="index.html">Joseph Vidal-Rosset - Personal Blog</a>
+</p>
+
+</div>
+
+<menu>
+<ul class="org-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="mailing_list_educasupphilo.html">Mailing list educasup.philo</a></li>
+</ul>
+</menu>
+
+</div>
+
+<p>
+ </p><h1>
+index 
+ </h1><p>
+</p>
+
+<p>
+<span class=page-date> <small> 
+ 2019-12-20, updated 2019-12-20 <a href="about.html">next</a> - <a href="the_code_that_runs_this_blog.html">previous</a>    
+</small> </span> 
+</p>
+<nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#mailing_list_educasupphilo">1. Mailing list educasup.philo</a></li>
+<li><a href="#logico-philosophical_posts">2. Logico-philosophical posts</a></li>
+<li><a href="#code">3. Code</a></li>
+<li><a href="#personal_posts">4. Personal posts</a></li>
+</ul>
+</div>
+</nav>
+<p>
+Hello everyone and welcome to my blog! 
+</p>
+<div id="outline-container-mailing_list_educasupphilo" class="outline-2">
+<h2 id="mailing_list_educasupphilo"><span class="section-number-2">1</span> Mailing list educasup.philo</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><b><a href="mailing_list_educasupphilo.html">Mailing list educasup.philo</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>Comment souscrire, poster,  et vérifier votre envoi sur la liste -  How to subscribe, how to post, how to check your post on the mailing list.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-logico-philosophical_posts" class="outline-2">
+<h2 id="logico-philosophical_posts"><span class="section-number-2">2</span> Logico-philosophical posts</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><b><a href="descartess_first_argument_for_the_existence_of_god.html">Descartes&rsquo;s first argument for the existence of God</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>In the language of  first-order logic, I provide in  this post a proof in natural deduction which translates the argument that Descartes gave in the Third Meditation as evidence of the existence of Go</li>
+<li><b><a href="anselms_argument_in_first-order_logic.html">Anselm&rsquo;s argument in first-order logic</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>In the language  of first-order logic, I provide in  this note a proof in natural deduction that translates Anselm&rsquo;s ontological argument (i.e. his <i>a priori</i> proof of the existence of God).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-code" class="outline-2">
+<h2 id="code"><span class="section-number-2">3</span> Code</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><b><a href="proof_checkers.html">Proof checkers</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>I am used  to check with different programs the  proofs that I provide in my papers. In this post, I check the proofs given in this blog.</li>
+<li><b><a href="installing_comment_engine_remark42.html">Installing comment engine Remark42</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br><a href="https://github.com/umputun/remark">Remark42</a> is  the comment engine of  this blog. I  describe in  details  its installation  in this  post,  thinking  that it  could  be helpful  to others.</li>
+<li><b><a href="my_nginx_setup.html">My nginx setup</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>This page will be maybe useful for others.</li>
+<li><b><a href="the_code_that_runs_this_blog.html">The code that runs this blog</a></b><span class="page-date"> (2019-12-20, updated 2019-12-20)</span>
+<br>I am  very thankful  to Ivan  Tadeu Ferreira  Antunes Filho  who wrote <a href="https://github.com/itf/org-export-head">org-export-head</a> that is the the code that runs his blog, and also mine now.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-personal_posts" class="outline-2">
+<h2 id="personal_posts"><span class="section-number-2">4</span> Personal posts</h2>
+<div class="outline-text-2" id="text-4">
+</br>
+<script>
+  var remark_config = {
+    host: "https://remark42.vidal-rosset.net", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'remark42.vidal-rosset.net',
+    components: ['embed', 'last-comments', 'counter'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    url: '', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: ''  // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed', 'last-comments', 'counter']);
+</script>
+<div id="remark42"></div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Joseph Vidal-Rosset</p>
+<p class="date">Date: 2019-12-20 ven. 17:16</p>
+<p class="author">Blog:  <a href="https://www.vidal-rosset.net/">https://wwww.vidal-rosset.net</a></p>
+<p class="creator">Made with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.3) and <a href="https://github.com/itf/org-export-head">Org export head (Many thanks to  Ivan Tadeu Ferreira Antunes Filho!;)</a> </p>
+</div>
+</body>
+</html>

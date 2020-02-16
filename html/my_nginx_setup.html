@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2020-01-02 jeu. 14:24 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My nginx setup</title>
+<meta name="generator" content="Org mode">
+<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="stylesheet" type="text/csl" href="ieee.csl"/>
+<link rel="icon" href="ico/favicon.ico" type="image/x- icon">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div class="head">
+<div class="title">
+<p>
+<a href="index.html">Joseph Vidal-Rosset - Personal Blog</a>
+</p>
+
+</div>
+
+<menu>
+<ul class="org-ul">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="mailing_list_educasupphilo.html">Mailing list educasup.philo</a></li>
+</ul>
+</menu>
+
+</div>
+
+<p>
+ </p><h1>
+My nginx setup 
+ </h1><p>
+</p>
+
+<p>
+<span class=page-date> <small> 
+ 2020-01-02, updated 2020-01-02 <a href="installing_comment_engine_remark42.html">next</a> - <a href="mailing_list_educasupphilo.html">previous</a>    
+</small> </span> 
+</p>
+<p>
+This page will be maybe useful for others. 
+</p>
+
+<p>
+My /etc/nginx/nginx.conf:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">user www-data;
+worker_processes  2;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    access_log  /var/log/nginx/access.log;
+    server_names_hash_bucket_size 64;
+    sendfile        on;
+    tcp_nopush     on;
+    <span class="org-comment-delimiter">#</span><span class="org-comment">keepalive_timeout  0;</span>
+    keepalive_timeout  65;
+    tcp_nodelay        on;
+    gzip  on;
+    gzip_comp_level   5;
+    gzip_http_version 1.0;
+    gzip_min_length   0;
+    <span class="org-comment-delimiter"># </span><span class="org-comment">gzip_types        text/plain text/html text/css image/x-icon  application/x-javascript;</span>
+    gzip_types        text/plain text/css image/x-icon  application/x-javascript;
+    gzip_vary         on;
+    <span class="org-comment-delimiter"># </span><span class="org-comment">include /etc/nginx/conf.d/*.conf;</span>
+    <span class="org-comment-delimiter"># </span><span class="org-comment">include /etc/nginx/sites-enabled/*;</span>
+
+   map $<span class="org-variable-name">sent_http_content_type</span> $<span class="org-variable-name">expires</span> {
+    <span class="org-string">"text/html"</span>                 epoch;
+    <span class="org-string">"text/html; charset=utf-8"</span>  epoch;
+    default                     off;
+}
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">From https://gist.github.com/nrollr/9a39bb636a820fb97eec2ed85e473d38</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">UPDATED 17 February 2019                       </span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Redirect all HTTP traffic to HTTPS                                                                                                                                                         </span>
+server {
+   listen 80;
+   listen [::]:80;
+          root /var/www/vidal-rosset/html;
+        index index.html index.htm index.nginx-debian.html;
+   server_name vidal-rosset.net;
+   <span class="org-keyword">return</span> 301 https://$<span class="org-variable-name">host</span>$<span class="org-variable-name">request_uri</span>;
+      }
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">SSL configuration                                                                                                                                                                           </span>
+server {
+   listen 443 ssl http2;
+   listen [::]:443 ssl http2;
+   server_name vidal-rosset.net;
+        ssl_certificate      /etc/letsencrypt/live/vidal-rosset.net-0001/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/vidal-rosset.net-0001/privkey.pem;
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">Improve HTTPS performance with session resumption                                                                                                                                   </span>
+        ssl_session_cache shared:SSL:10m;
+        ssl_session_timeout 10m;
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">Enable server-side protection against BEAST attacks                                                                                                                                 </span>
+        ssl_protocols TLSv1.2;
+        ssl_prefer_server_ciphers on;
+        ssl_ciphers <span class="org-string">"ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384"</span>;
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">RFC-7919 recommended: https://wiki.mozilla.org/Security/Server_Side_TLS#ffdhe4096                                                                                                   </span>
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ssl_dhparam /etc/ssl/ffdhe4096.pem;</span>
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ssl_ecdh_curve secp521r1:secp384r1;</span>
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">Aditional Security Headers                                                                                                                                                          </span>
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ref: https://developer.mozilla.org/en-US/docs/Security/HTTP_Strict_Transport_Security                                                                                               </span>
+        add_header Strict-Transport-Security <span class="org-string">"max-age=31536000; includeSubDomains"</span>;
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options                                                                                                      </span>
+        add_header X-Frame-Options DENY always;
+
+      <span class="org-comment-delimiter"># </span><span class="org-comment">ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options                                                                                               </span>
+      add_header X-Content-Type-Options nosniff always;
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection                                                                                                     </span>
+      add_header X-Xss-Protection <span class="org-string">"1; mode=block"</span> always;
+
+      <span class="org-comment-delimiter"># </span><span class="org-comment">Enable OCSP stapling                                                                                                                                                                </span>
+      <span class="org-comment-delimiter"># </span><span class="org-comment">ref. http://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox                                                                                                           </span>
+      ssl_stapling on;
+      ssl_stapling_verify on;
+        ssl_trusted_certificate /etc/letsencrypt/live/vidal-rosset.net-0001/fullchain.pem;
+        resolver 1.1.1.1 1.0.0.1 [2606:4700:4700::1111] [2606:4700:4700::1001] <span class="org-variable-name">valid</span>=300s; <span class="org-comment-delimiter"># </span><span class="org-comment">Cloudflare                                                                                       </span>
+        resolver_timeout 5s;
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">Required for LE certificate enrollment using certbot                                                                                                                                        </span>
+   location <span class="org-string">'/.well-known/acme-challenge'</span> {
+        default_type <span class="org-string">"text/plain"</span>;
+        root /var/www/vidal-rosset/html;
+   }
+   location / {
+        root /var/www/vidal-rosset/html;
+    }
+ }
+
+server {
+    listen          443;             <span class="org-comment-delimiter"># </span><span class="org-comment">le port sur lequel nginx &#233;coute</span>
+    server_name     remark42.vidal-rosset.net;    <span class="org-comment-delimiter"># </span><span class="org-comment">mettre votre domaine ici</span>
+
+     ssl_certificate      /etc/letsencrypt/live/vidal-rosset.net-0001/fullchain.pem;
+     ssl_certificate_key  /etc/letsencrypt/live/vidal-rosset.net-0001/privkey.pem;
+
+    add_header Strict-Transport-Security <span class="org-string">"max-age=63072000; includeSubdomains; preload"</span>;
+
+    <span class="org-comment-delimiter"># </span><span class="org-comment">limit_conn perip 10;</span>
+
+    gzip            on;
+    gzip_types      text/plain application/xml text/css application/javascript;
+    gzip_min_length 1000;
+
+    location / {
+        expires $<span class="org-variable-name">expires</span>;
+        proxy_redirect                      off;
+        <span class="org-comment-delimiter"># </span><span class="org-comment">proxy_set_header Host               $host;</span>
+        proxy_set_header Host               $<span class="org-variable-name">http_host</span>;
+        proxy_set_header X-Real-IP          $<span class="org-variable-name">remote_addr</span>;
+        proxy_set_header X-Forwarded-For    $<span class="org-variable-name">proxy_add_x_forwarded_for</span>;
+        proxy_set_header X-Forwarded-Proto  $<span class="org-variable-name">scheme</span>;
+        proxy_read_timeout          1m;
+        proxy_connect_timeout       1m;
+        proxy_pass                          http://127.0.0.1:8080; <span class="org-comment-delimiter"># </span><span class="org-comment">mettre l'URL de l'instance Node.js ici</span>
+    }
+  }
+}
+</pre>
+</div>
+
+<p>
+That&rsquo;s it. Note that  <i>etc/nginx/sites-enabled</i> is void. 
+</p>
+
+<p>
+Were helphful: 
+</p>
+<ul class="org-ul">
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-debian-10">https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-debian-10</a></li>
+<li><a href="https://fr.nuxtjs.org/faq/nginx-proxy/">https://fr.nuxtjs.org/faq/nginx-proxy/</a></li>
+</ul>
+</br>
+<script>
+  var remark_config = {
+    host: "https://remark42.vidal-rosset.net", // hostname of remark server, same as REMARK_URL in backend config, e.g. "https://demo.remark42.com"
+    site_id: 'remark42.vidal-rosset.net',
+    components: ['embed', 'last-comments', 'counter'], // optional param; which components to load. default to ["embed"]
+                           // to load all components define components as ['embed', 'last-comments', 'counter']
+                           // available component are:
+                           //     - 'embed': basic comments widget
+                           //     - 'last-comments': last comments widget, see `Last Comments` section below
+                           //     - 'counter': counter widget, see `Counter` section below
+    url: '', // optional param; if it isn't defined
+                     // `window.location.origin + window.location.pathname` will be used,
+                     //
+                     // Note that if you use query parameters as significant part of url
+                     // (the one that actually changes content on page)
+                     // you will have to configure url manually to keep query params, as
+                     // `window.location.origin + window.location.pathname` doesn't contain query params and
+                     // hash. For example default url for `https://example/com/example-post?id=1#hash`
+                     // would be `https://example/com/example-post`.
+                     //
+                     // The problem with query params is that they often contain useless params added by
+                     // various trackers (utm params) and doesn't have defined order, so Remark treats differently
+                     // all this examples:
+                     // https://example.com/?postid=1&date=2007-02-11
+                     // https://example.com/?date=2007-02-11&postid=1
+                     // https://example.com/?date=2007-02-11&postid=1&utm_source=google
+                     //
+                     // If you deal with query parameters make sure you pass only significant part of it
+                     // in well defined order
+    max_shown_comments: 10, // optional param; if it isn't defined default value (15) will be used
+    theme: 'light', // optional param; if it isn't defined default value ('light') will be used
+    page_title: ''  // optional param; if it isn't defined `document.title` will be used
+  };
+
+  (function(c) {
+    for(var i = 0; i < c.length; i++){
+      var d = document, s = d.createElement('script');
+      s.src = remark_config.host + '/web/' +c[i] +'.js';
+      s.defer = true;
+      (d.head || d.body).appendChild(s);
+    }
+  })(remark_config.components || ['embed', 'last-comments', 'counter']);
+</script>
+<div id="remark42"></div>
+<!-- Début code Web-Stat v 6.3 -->
+<span id="wts1931943">&nbsp;</span><script>
+var wts=document.createElement('script');wts.type='text/javascript';
+wts.async=true;wts.src='https://wts.one/1/1931943/log6_2.js';
+document.getElementById('wts1931943').appendChild(wts);
+</script><noscript><a href="https://www.web-stat.fr">
+<img src="https://wts.one/6/1/1931943.gif" 
+alt="statistiques web Web-Stat"></a></noscript>
+<!-- Fin code Web-Stat v 6.3 -->
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Joseph Vidal-Rosset</p>
+<p class="date">Date: 2020-01-02 jeu. 14:24</p>
+<p class="author">Blog:  <a href="https://www.vidal-rosset.net/">https://wwww.vidal-rosset.net</a></p>
+<p class="creator">Made with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.3.1) and <a href="https://github.com/itf/org-export-head">Org export head (Many thanks to  Ivan Tadeu Ferreira Antunes Filho!;)</a> </p>
+</div>
+</body>
+</html>
